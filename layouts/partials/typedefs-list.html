@@ -1,0 +1,26 @@
+{{ if .Params.hyde.typedefs }}
+<h2>Typedefs</h2>
+
+<table class="td-initial">
+<thead>
+  <td>Typedef/Alias</td>
+  <td>Definition</td>
+  <td>Notes</td>
+</thead>
+<tbody>
+{{ range .Params.hyde.typedefs }}
+    <tr>
+    <td>
+        {{ partial "highlight-block.html" .key }}
+    </td>
+    <td>
+        {{ partial "highlight-block.html" .definition }}
+    </td>
+    <td>
+        {{ partial "description-block.html" . }}
+    </td>
+    </tr>
+{{ end }}
+</tbody>
+</table>
+{{ end }}

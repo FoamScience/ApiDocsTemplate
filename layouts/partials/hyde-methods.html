@@ -1,0 +1,187 @@
+{{ if .Page.Params.hyde.fields }}
+
+{{ $base := .Page.Permalink }}
+{{ $allmeths := where .Pages "Params.layout" "method" }}
+{{ $ctors := where (where .Pages "Params.layout" "method") "Params.hyde.is_ctor" "==" true }}
+{{ $dtors := where (where .Pages "Params.layout" "method") "Params.hyde.is_dtor" "==" true }}
+{{ $meths := $allmeths | symdiff ($ctors | union $dtors) }}
+{{ $ops := where $meths "Params.title" "like" "operator" }}
+{{ $funcs := $meths | symdiff $ops }}
+
+{{ if $allmeths }}
+<h2>Member Methods</h2>
+
+{{ if $ctors }}
+<h3>Constructors</h5>
+<table class="td-initial">
+<thead>
+  <td>Signature</td>
+  <td>Specifiers</td>
+</thead>
+<tbody>
+    {{ range $ctors }}
+    {{ $curr := (partial "process-template.html" .Params.title) }}
+    {{ range $val := .Params.hyde.overloads }}
+<tr>
+    <td onclick='location.href={{printf "%sm_%s" $base $curr }}'>
+        {{ partial "highlight-block.html" $val.key }}
+    </td>
+    <td>
+        {{ if $val.annotation}}
+        {{ range $c:= $val.annotation }}
+        {{ partial "highlight-block.html" $c }} &nbsp;
+        {{ end }}
+        {{ else }}
+        {{ partial "highlight-block.html" "public" }}
+        {{ end }}
+    </td>
+</tr>
+    {{ end }}
+    {{ end }}
+</tbody>
+</table>
+{{ end }}
+
+{{ if $dtors }}
+<h3>Destructor</h3>
+<table class="td-initial">
+<thead>
+  <td>Signature</td>
+  <td>Specifiers</td>
+</thead>
+<tbody>
+    {{ range $dtors }}
+    {{ $curr := (partial "process-template.html" .Params.title) }}
+    {{ range $val := .Params.hyde.overloads }}
+<tr>
+    <td onclick='location.href={{printf "%sm_%s" $base $curr }}'>
+        {{ partial "highlight-block.html" $val.key }}
+    </td>
+    <td>
+        {{ if $val.annotation}}
+        {{ range $c:= $val.annotation }}
+        {{ partial "highlight-block.html" $c }} &nbsp;
+        {{ end }}
+        {{ else }}
+        {{ partial "highlight-block.html" "public" }}
+        {{ end }}
+    </td>
+</tr>
+    {{ end }}
+    {{ end }}
+</tbody>
+</table>
+{{ end }}
+
+<h3>Member Functions</h3>
+
+{{ $s := newScratch }}
+{{ range $i,$f := $funcs }}
+{{ range $o := $f.Params.hyde.overloads }}
+    {{ if and ($o.annotation ) }}
+        {{ range $o.annotation }}
+            {{ if or (eq . "private") (eq . "protected")}}
+                {{ $s.SetInMap "nonPubs" (string $i) (dict "title" $f.Params.title "value" $o) }}
+            {{ end }}
+        {{ end }}
+    {{ else }}
+        {{ $s.SetInMap "pubs" (string $i) (dict "title" $f.Params.title "value" $o) }}
+    {{end}}
+{{ else }}
+{{ end }}
+{{ end }}
+{{ $pubs := ($s.Get "pubs") }}
+{{ $nonpubs := $s.Get "nonPubs" }}
+
+{{ if $pubs }}
+<table class="td-initial">
+<thead>
+  <td>Signature</td>
+  <td>Specifiers</td>
+</thead>
+<tbody>
+    <h5>Public interface</h5>
+    {{ range $val := $pubs }}
+    {{ $curr := $val.title | urlize }}
+<tr>
+    <td onclick='location.href={{printf "%sm_%s" $base $curr }}'>
+        {{ partial "highlight-block.html" $val.value.key }}
+    </td>
+    <td>
+        {{ if $val.value.annotation}}
+        {{ range $c:= $val.value.annotation }}
+        {{ partial "highlight-block.html" $c }} &nbsp;
+        {{ end }}
+        {{ else }}
+        {{ partial "highlight-block.html" "public" }}
+        {{ end }}
+    </td>
+</tr>
+    {{ end }}
+</tbody>
+</table>
+{{ end }}
+
+{{ if $nonpubs }}
+<table class="td-initial">
+<thead>
+  <td>Signature</td>
+  <td>Specifiers</td>
+</thead>
+<tbody>
+    <h5>Private and Protected Methods</h5>
+    {{ range $val := $nonpubs }}
+    {{ $curr := $val.title | urlize }}
+<tr>
+    <td onclick='location.href={{printf "%sm_%s" $base $curr }}'>
+        {{ partial "highlight-block.html" $val.value.key }}
+    </td>
+    <td>
+        {{ if $val.value.annotation}}
+        {{ range $c:= $val.value.annotation }}
+        {{ partial "highlight-block.html" $c }} &nbsp;
+        {{ end }}
+        {{ else }}
+        {{ partial "highlight-block.html" "public" }}
+        {{ end }}
+    </td>
+</tr>
+    {{ end }}
+</tbody>
+</table>
+{{ end }}
+
+{{ if $ops }}
+<h3>Member Operators</h3>
+
+<table class="td-initial">
+<thead>
+  <td>Signature</td>
+  <td>Specifiers</td>
+</thead>
+<tbody>
+    {{ range $ops }}
+    {{ $curr := (partial "process-template.html" .Params.title) }}
+    {{ range $val := .Params.hyde.overloads }}
+<tr>
+    <td onclick='location.href={{printf "%sm_%s" $base $curr }}'>
+        {{ partial "highlight-block.html" $val.key }}
+    </td>
+    <td>
+        {{ if $val.annotation}}
+        {{ range $c:= $val.annotation }}
+        {{ partial "highlight-block.html" $c }} &nbsp;
+        {{ end }}
+        {{ else }}
+        {{ partial "highlight-block.html" "public" }}
+        {{ end }}
+    </td>
+</tr>
+    {{ end }}
+    {{ end }}
+</tbody>
+</table>
+{{end}}
+{{end}}
+
+{{ end }}

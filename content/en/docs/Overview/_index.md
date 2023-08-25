@@ -1,21 +1,31 @@
 ---
 title: Overview
-description: Here's where your user finds out if your project is for them.
+description: Here's where you finds out if this project is for you
 weight: 1
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+{{< alert title="Note" >}}
+If you write OpenFOAM code with C++17 and up; you may want to help supporting the
+new constructs by PRing to [Hyde](https://github.com/adobe/hyde)!
+{{< /alert >}}
 
+This page is basically a recap of what would be a user-guide on how to use this website
+to generate your own docs.
 
-The Overview is where your users find out about your project. Depending on the size of your docset, you can have a separate overview page (like this one) or put your overview contents in the Documentation landing page (like in the Docsy User Guide).
+## What is this?
 
-Try answering these questions for your user in this page:
+We rely on [Hugo](https://gohugo.io) static site generator to build HTML docs we get from
+[Hyde](https://github.com/adobe/hyde). This allows us to host such websites for free on
+multiple platforms (Github Pages being our target).
 
-## What is it?
+The promise is that you will only have to write your docs in Markdown syntax, and you get
+automatic updates for your docs as your code changes.
 
-Introduce your project, including what it does or lets you do, why you would use it, and its primary goal (and how it achieves it). This should be similar to your README description, though you can go into a little more detail here if you want.
+{{< alert color="warning" >}}
+We cannot supported full up-to-date states of the docs specifically because OpenFOAM
+code does not respect this. If they mark methods with `[[deprecated]]`, this is supposed
+to be reflected in the docs but it is not yet enforced in most OpenFOAM forks!
+{{< /alert >}}
 
 ## Why do I want it?
 

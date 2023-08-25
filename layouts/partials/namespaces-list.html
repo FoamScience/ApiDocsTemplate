@@ -1,0 +1,33 @@
+<h2>Namespaces</h2>
+
+{{ $thispath:=""}}
+{{ with .File }}
+{{ $thispath = .Dir }}
+{{ end }}
+
+{{range $name, $taxonomy := .Site.Taxonomies.api_namespaces}}
+{{ $nspg := $.Site.GetPage (printf "/api_namespaces/%s" $name) }}
+<h3>{{ partial "highlight-block.html" $nspg.Params.title }}</h3>
+<table class="td-initial">
+<thead>
+  <td>Entity</td>
+  <td>Type</td>
+  <td>Notes</td>
+</thead>
+<tbody>
+{{ range $val := where $taxonomy "File.Dir" "like" $thispath }}
+    <tr>
+    <td onclick="window.location.href='{{ $val.Permalink }}'">
+        {{ partial "highlight-block.html" $val.Params.title }}
+    </td>
+    <td>
+        {{ partial "highlight-block.html" $val.Params.layout }}
+    </td>
+    <td>
+        {{ partial "description-block.html" $val.Params.hyde | truncate 400 }}
+    </td>
+    </tr>
+{{ end }}
+</tbody>
+</table>
+{{ end }}

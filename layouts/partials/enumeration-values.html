@@ -1,0 +1,32 @@
+
+<h2>Enum values</h2>
+
+<table class="td-initial">
+<thead>
+  <td>Name</td>
+  <td>Specifiers</td>
+  <td>Notes</td>
+</thead>
+<tbody>
+{{ range $val := .Params.hyde.values }}
+<tr>
+    <td>
+        {{ partial "highlight-block.html" $val.name }}
+    </td>
+    <td>
+        {{ if $val.annotation}}
+        {{ range $c:= $val.annotation }}
+        {{ partial "highlight-block.html" $c }} &nbsp;
+        {{ end }}
+        {{ else }}
+        {{ partial "highlight-block.html" "public" }}
+        {{ end }}
+    </td>
+    <td>
+        {{ partial "description-block.html" $val }}
+    </td>
+</tr>
+{{ else }}
+{{ end }}
+</tbody>
+</table>

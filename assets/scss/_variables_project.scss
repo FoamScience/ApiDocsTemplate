@@ -4,3 +4,33 @@ Add styles or override variables from the theme here.
 
 */
 
+$primary: #128178;
+$secondary: #F5F5DC;
+$tinted: tint-color($secondary, 50%);
+
+$google_font_name: "Jost";
+$google_font_family: "Jost:300,300i,400,400i,700,700i";
+$font-family-monospace: Jost, "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+  "Liberation Mono", "Courier New", monospace !important;
+
+.td-table {
+    @extend .table;
+    @extend .table-responsive;
+    thead {
+        @extend .-bg-primary;
+    }
+    tbody {
+        background-color: rgba($black, 0.05);
+    }
+
+    // For details, see the https://docsy.dev/docs/adding-content/lookandfeel/#tables
+    display: block;
+}
+
+h1.display-1 {
+    backdrop-filter: blur(30px) saturate(80%);
+}
+
+code {
+    font-family: $font-family-monospace;
+}

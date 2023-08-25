@@ -1,0 +1,15 @@
+{{ with .inline.note }}
+<div class="alert alert-success" role="alert">
+{{ . }}
+</div>
+{{end}}
+{{ with .inline.warning }}
+<div class="alert alert-warning" role="alert">
+{{ . }}
+</div>
+{{end}}
+{{ with .inline.error }}
+<div class="alert alert-error" role="alert">
+{{ . }}
+</div>
+{{end}}

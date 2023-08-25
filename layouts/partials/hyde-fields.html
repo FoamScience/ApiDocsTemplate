@@ -1,0 +1,36 @@
+{{ if .Page.Params.hyde.fields }}
+<h2>Member Fields</h2>
+<div>
+<table class="td-initial">
+<thead>
+  <td>Field</td>
+  <td>Type</td>
+  <td>Specifiers</td>
+  <td>Notes</td>
+</thead>
+<tbody>
+{{ range $field := .Page.Params.hyde.fields }}
+<tr>
+    <td>
+        {{ partial "highlight-block.html" $field.key }}
+    </td>
+    <td>
+        {{ partial "highlight-block.html" $field.type }}
+    </td>
+    <td>
+        {{ if $field.annotation }}
+        {{range $acc := $field.annotation}}
+        {{ highlight $acc "cpp" "hl_inline=true"}} &nbsp;
+        {{end}}
+        {{else}}
+        {{ highlight "public" "cpp" "hl_inline=true"}}
+        {{end}}
+    </td>
+    <td>
+        {{ partial "description-block.html" $field }}
+    </td>
+</tr>
+{{ end }}
+</tbody></table>
+</div>
+{{ end }}

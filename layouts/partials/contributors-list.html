@@ -1,0 +1,52 @@
+{{ $s := newScratch }}
+{{ with .Params.contributors }}
+{{ $type := (printf "%T" .) }}
+{{ if eq $type "[]string" }}
+    {{ $s.Add "contribs" . }}
+{{ else }}
+{{ $s.Add "contribs" (slice .) }}
+{{ end }}
+{{ end }}
+
+{{ $pgs := .Pages }}
+{{ range $pgs }}
+{{ with .Params.contributors }}
+{{ $type := (printf "%T" .) }}
+{{ if eq $type "[]string" }}
+{{ $s.Add "contribs" . }}
+{{ else }}
+{{ $s.Add "contribs" (slice .) }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ $contribs := uniq ($s.Get "contribs") }}
+
+{{ if $contribs }}
+{{ $allpgs := .Site.Pages }}
+<div>
+    By
+    {{ range $idx,$val := $contribs }}
+    {{ $len := (len $contribs) }}
+    {{ $c := index (where $allpgs ".Data.Term" "==" ($val | urlize) ) 0 }}
+    <a href="/contributors/{{ $val | urlize }}">{{ $c.Params.title }}</a>
+    {{ if or $c.Params.linkedin $c.Params.github }}
+    (
+    {{ if or $c.Params.linkedin }}
+    <a href="https://www.linkedin.com/in/{{ $c.Params.linkedin }}">
+        {{ printf "<div class='fab fa-linkedin'></div> %s" $c.Params.linkedin | markdownify }}
+    </a>,
+    {{ end }}
+    {{ if or $c.Params.github }}
+    <a href="https://github.com/{{ $c.Params.github | urlize }}">
+        {{ printf "<div class='fab fa-github'></div> %s" $c.Params.github | markdownify }}
+    </a>
+    {{ end }}
+    )
+    {{ end }}
+    {{ if not (eq (add $idx 1) $len) }}
+    ,
+    {{ end }}
+    {{ else }}  
+    {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,4 @@
+sampleClass/sampleClass.C
+functions.C
+
+LIB = $(FOAM_USER_LIBBIN)/libsampleBC

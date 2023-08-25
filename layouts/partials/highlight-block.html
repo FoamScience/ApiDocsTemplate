@@ -1,0 +1,5 @@
+{{ if strings.Contains . "\n" }}
+    {{ highlight . "cpp" }}
+{{ else }}
+    {{ highlight . "cpp" "hl_inline=true" }}
+{{ end }}

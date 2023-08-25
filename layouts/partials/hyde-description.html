@@ -1,0 +1,11 @@
+{{ $brief := .Page.Params.hyde.brief }}
+{{ $inline_brief := .Page.Params.hyde.inline.brief }}
+
+{{ $description := .Page.Params.hyde.description }}
+{{ $inline_description := .Page.Params.hyde.inline.description }}
+
+{{ $desc := partial "description-block.html" .Page.Params.hyde }}
+{{ if gt (len (replaceRE "([\\s\\n\\r])" "" $desc)) 11 }}
+<h2>Description</h2>
+{{ $desc }}
+{{ end }}

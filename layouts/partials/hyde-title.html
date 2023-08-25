@@ -1,0 +1,21 @@
+<h1>
+    {{ if eq .Page.Params.layout "class" }}
+    <div class="fa fa-sitemap fa-rotate-90 -text-primary"></div>
+    {{ else if eq .Page.Params.layout "function" }}
+    <div class="fa fa-cube -text-success"></div>
+    {{ else if eq .Page.Params.layout "library" }}
+    <div class="fa fa-book -text-primary"></div>
+    {{ else if eq .Page.Params.layout "directory" }}
+    <div class="fa fa-folder -text-primary"></div>
+    {{ else if eq .Page.Params.layout "enumeration" }}
+    <div class="fa fa-arrow-up-9-1 -text-primary"></div>
+    {{ else }}
+    {{ if .Page.Params.hyde.is_ctor }}
+    <div class="fa fa-toolbox -text-primary"></div>
+    {{ end }}
+    {{ if .Page.Params.hyde.is_dtor }}
+    <div class="fa fa-rectangle-xmark -text-primary"></div>
+    {{ end }}
+    {{ end }}
+    {{ .Page.Params.title | markdownify }}
+</h1>

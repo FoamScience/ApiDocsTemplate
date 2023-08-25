@@ -1,0 +1,4 @@
+sampleBC/sampleBCFvPatchFields.C
+sample.C
+
+LIB = $(FOAM_USER_LIBBIN)/libsampleBC

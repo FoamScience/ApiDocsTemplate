@@ -1,0 +1,44 @@
+<h3>Overloads</h3>
+{{ $overloads := .Page.Params.hyde.overloads }}
+<div>
+{{ range $indx, $val := $overloads }}
+<div>
+{{ "---" | markdownify}}
+{{ highlight $val.signature_with_names "cpp"}}
+<p>
+{{ partial "description-block.html" $val }}
+</p>
+<p>
+{{ if $val.arguments }}
+{{ "Takes:" | markdownify}}
+<ol>
+{{ range $arg, $elem := $val.arguments }}
+    <li>
+    A {{ highlight $elem.type "cpp" "hl_inline=true"}}
+    {{if not (strings.HasPrefix $elem.name "unnamed-")}}
+    (named {{ highlight $elem.name "cpp" "hl_inline=true"}})
+    {{end}}
+    <p>
+    {{ partial "description-block.html" $elem }}
+    </p>
+    </li>
+{{ end }}
+</ol>
+</p>
+{{ end }}
+<p>
+{{ if $val.return }}
+{{ if not (strings.Contains $val.return "__OPTIONAL__") }}
+{{ printf "Returns:<br>&nbsp; &nbsp; &nbsp; &nbsp; %s" $val.return | markdownify }}
+{{end}}
+{{end}}
+{{ if $val.inline.return }}
+{{ if not (strings.Contains $val.inline.return "__OPTIONAL__") }}
+<br>
+{{ printf "Returns:<br>&nbsp; &nbsp; &nbsp; &nbsp; %s" $val.inline.return | markdownify }}
+{{end}}
+{{end}}
+</p>
+</div>
+{{end}}
+</div>

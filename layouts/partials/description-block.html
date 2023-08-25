@@ -1,0 +1,98 @@
+{{ if .brief }}
+{{ $type := (printf "%T" .brief) }}
+<div>
+{{ if eq $type "[]interface {}" }}
+{{ range $elem_val := .brief }}
+    {{ if not (strings.Contains $elem_val "__OPTIONAL__") }}
+    {{ if not (strings.Contains $elem_val "__INLINED__") }}
+    {{ if not (strings.Contains $elem_val "__MISSING__") }}
+    {{  $elem_val | htmlEscape | emojify | markdownify }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+{{ end }}
+{{end}}
+{{ if eq $type "string" }}
+    {{ if not (strings.Contains .brief "__OPTIONAL__") }}
+    {{ if not (strings.Contains .brief "__INLINED__") }}
+    {{ if not (strings.Contains .brief "__MISSING__") }}
+    {{ .brief | replace "\n" "<br>" | htmlEscape | emojify | markdownify }}
+    {{end}}
+    {{end}}
+    {{end}}
+{{end}}
+</div>
+{{ end }}
+
+
+{{ if .inline.brief }}
+{{ $type := (printf "%T" .inline.brief) }}
+<div><p>
+{{ if eq $type "[]interface {}" }}
+{{ range $elem_val := .inline.brief }}
+    {{ if not (strings.Contains $elem_val "__OPTIONAL__") }}
+    {{ if not (strings.Contains $elem_val "__MISSING__") }}
+    {{  $elem_val | htmlEscape | emojify | markdownify }}
+    {{ end }}
+    {{ end }}
+{{ end }}
+{{end}}
+{{ if eq $type "string" }}
+    {{ if not (strings.Contains .inline.brief "__OPTIONAL__") }}
+    {{ if not (strings.Contains .inline.brief "__MISSING__") }}
+    {{  .inline.brief | htmlEscape | emojify | markdownify }}
+    {{ partial "notes-block.html" . }}
+    {{end}}
+    {{end}}
+{{end}}
+</div></p>
+{{ end }}
+
+
+{{ if .description }}
+{{ $type := (printf "%T" .description) }}
+<div>
+{{ if eq $type "[]interface {}" }}
+{{ range $elem_val := .description }}
+    {{ if not (strings.Contains $elem_val "__OPTIONAL__") }}
+    {{ if not (strings.Contains $elem_val "__INLINED__") }}
+    {{ if not (strings.Contains $elem_val "__MISSING__") }}
+    {{  $elem_val | htmlEscape | emojify | markdownify }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+{{ end }}
+{{end}}
+{{ if eq $type "string" }}
+    {{ if not (strings.Contains .description "__OPTIONAL__") }}
+    {{ if not (strings.Contains .description "__INLINED__") }}
+    {{ if not (strings.Contains .description "__MISSING__") }}
+    {{  .description | htmlEscape | emojify | markdownify }}
+    {{end}}
+    {{end}}
+    {{end}}
+{{end}}
+</div>
+{{ end }}
+
+{{ if .inline.description }}
+{{ $type := (printf "%T" .inline.description) }}
+<div>
+{{ if eq $type "[]interface {}" }}
+{{ range $elem_val := .inline.description }}
+    {{ if not (strings.Contains $elem_val "__OPTIONAL__") }}
+    {{ if not (strings.Contains $elem_val "__MISSING__") }}
+    {{  $elem_val | htmlEscape | emojify | markdownify }}
+    {{ end }}
+    {{ end }}
+{{ end }}
+{{end}}
+{{ if eq $type "string" }}
+    {{ if not (strings.Contains .inline.description "__OPTIONAL__") }}
+    {{ if not (strings.Contains .inline.description "__MISSING__") }}
+    {{  .inline.description | htmlEscape | emojify | markdownify }}
+    {{end}}
+    {{end}}
+{{end}}
+</div>
+{{ end }}

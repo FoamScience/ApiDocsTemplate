@@ -1,0 +1,15 @@
+{{ $base := .Page.Permalink }}
+{{ $funcs := where .Pages "Params.layout" "function" }}
+{{ if gt (len $funcs) 0 }}
+<h2>Associated Free Functions</h2>
+<ul>
+    {{ range $funcs }}
+    {{ $curr := .Params.title | urlize }}
+    {{ range $indx, $val := .Params.hyde.overloads }}
+    <li onclick='location.href={{printf "%sf_%s" $base $curr }}'>
+        {{ partial "highlight-block.html" $indx }}
+    </li>
+    {{ end }}
+    {{ end }}
+</ul>
+{{end}}
