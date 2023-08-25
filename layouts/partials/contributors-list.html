@@ -8,7 +8,7 @@
 {{ end }}
 {{ end }}
 
-{{ $pgs := .Pages }}
+{{ $pgs := where .Site.Pages "File.Dir" "like" .File.Dir }}
 {{ range $pgs }}
 {{ with .Params.contributors }}
 {{ $type := (printf "%T" .) }}
