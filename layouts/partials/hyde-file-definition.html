@@ -1,0 +1,9 @@
+{{ if .Page.Params.hyde.defined_in_file }}
+<div>
+Defined in <a href={{ .Page.Params.hyde.defined_in_file }}>
+{{ $pth := replace "https://" "/" .Page.Params.hyde.defined_in_file }}
+{{ $dirFile := path.Split $pth }}
+{{ $dirFile.File }}
+</a>
+</div>
+{{ end }}
