@@ -1,10 +1,18 @@
 ---
+api_tags:
+  - library
+contributors:
+  - __MISSING__
 hyde:
-  description: Sample API docs for OpenFOAM libs
+  brief: __MISSING__
+  icon: __MISSING__
+  library-type: library
+  owner: __MISSING__
+  short_title: __OPTIONAL__
+  tab: __MISSING__
+  tags:
+    - library
 layout: library
-menu:
-  main:
-    weight: 11
 title: Sample API
 ---
 

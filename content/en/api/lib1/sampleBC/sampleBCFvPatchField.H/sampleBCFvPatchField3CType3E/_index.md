@@ -8,7 +8,7 @@ contributors:
 hyde:
   brief: __MISSING__
   declaration: "template <class Type>\nclass Foam::sampleBCFvPatchField;"
-  defined_in_file: https://github.com/FoamScience/ApiDocsTemplate/blob/main/code/sampleBC/sampleBCFvPatchField.H
+  defined_in_file: https://github.com/FoamScience/ApiDocsTemplate/blob/main/code/lib1/sampleBC/sampleBCFvPatchField.H
   dtor: unspecified
   fields:
     boolData_:

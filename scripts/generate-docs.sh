@@ -54,5 +54,5 @@ for lib in $libs; do
 done
 
 scriptdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-find $api -type f -name "*md" -exec python3 $scriptdir/process-fm.py {} ${src} \; -exec mdformat {} \;
+find $api -type f -name "*md" -exec python3 $scriptdir/process-fm.py {} ${src} ${api} \; -exec mdformat {} \;
 find $api -type f -name "*md" -exec sed -i 's/\\ \([abtnvfre]\)/\\\1/g' {} \;

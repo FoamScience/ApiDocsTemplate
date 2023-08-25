@@ -39,7 +39,10 @@ if "defined_in_file" in post["hyde"].keys() and post["hyde"]["defined_in_file"] 
     root = repo.git.rev_parse('--show-toplevel')
     remote = repo.remote().url
     branch = repo.active_branch.name
-    relpath = os.path.relpath(sys.argv[2]+"/"+post["hyde"]["defined_in_file"], root)
+    # First dir after $3 is library name
+    # 3: /path/to/content/en/api
+    libname = os.path.relpath(sys.argv[1], sys.argv[3]).split(os.path.sep)[0]
+    relpath = os.path.relpath(sys.argv[2]+f"/{libname}/"+post["hyde"]["defined_in_file"], root)
     remotepath = f"{remote}/blob/{branch}/{relpath}"
     post["hyde"]["defined_in_file"] = remotepath
 

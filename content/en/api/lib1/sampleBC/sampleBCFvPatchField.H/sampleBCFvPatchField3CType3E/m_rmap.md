@@ -5,7 +5,7 @@ contributors:
   - __MISSING__
 hyde:
   brief: __INLINED__
-  defined_in_file: https://github.com/FoamScience/ApiDocsTemplate/blob/main/code/sampleBC/sampleBCFvPatchField.H
+  defined_in_file: https://github.com/FoamScience/ApiDocsTemplate/blob/main/code/lib1/sampleBC/sampleBCFvPatchField.H
   inline:
     brief:
       - '- Reverse map the given fvPatchField onto this fvPatchField'

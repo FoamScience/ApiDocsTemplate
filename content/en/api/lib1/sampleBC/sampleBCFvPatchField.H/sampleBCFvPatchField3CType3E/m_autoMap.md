@@ -5,7 +5,7 @@ contributors:
   - __MISSING__
 hyde:
   brief: __INLINED__
-  defined_in_file: https://github.com/FoamScience/ApiDocsTemplate/blob/main/code/sampleBC/sampleBCFvPatchField.H
+  defined_in_file: https://github.com/FoamScience/ApiDocsTemplate/blob/main/code/lib1/sampleBC/sampleBCFvPatchField.H
   inline:
     brief:
       - '- Map (and resize as needed) from self given a mapping object'

@@ -8,7 +8,7 @@ contributors:
   - another
 hyde:
   brief: __INLINED__
-  defined_in_file: https://github.com/FoamScience/ApiDocsTemplate/blob/main/code/functions.C
+  defined_in_file: https://github.com/FoamScience/ApiDocsTemplate/blob/main/code/lib2/functions.C
   inline:
     brief: Substract two sampleClass objects; delegates to `x` members
     owner:
