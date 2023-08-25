@@ -92,11 +92,11 @@ version = "0.0"
 # point people to the main doc site.
 url_latest_version = "/"
 
-github_repo = "https://github.com/FoamScience/ThisDocsRepo"
-github_project_repo = "https://github.com/FoamScience/exampleRepo"
+github_repo = "https://github.com/FoamScience/ApiDocsTemplate"
+github_project_repo = "https://github.com/FoamScience/ApiDocsTemplate"
 
 # Specify a value here if your content directory is not in your repo's root directory
-# github_subdir = ""
+github_subdir = "code"
 
 # Uncomment this if your GitHub repo does not have "main" as the default branch,
 # or specify a new value if you want to reference another branch in your GitHub links
