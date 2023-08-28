@@ -37,7 +37,7 @@ if "hyde" not in post.keys():
 if "defined_in_file" in post["hyde"].keys() and post["hyde"]["defined_in_file"] != "":
     repo = git.Repo(sys.argv[2], search_parent_directories=True)
     root = repo.git.rev_parse('--show-toplevel')
-    remote = repo.remote().url
+    remote = repo.remote().url.strip(".git[/]")
     branch = repo.active_branch.name
     # First dir after $3 is library name
     # 3: /path/to/content/en/api

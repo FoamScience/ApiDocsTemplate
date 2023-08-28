@@ -1,5 +1,4 @@
 ---
-menu: {main: {weight: 20}}
 api_tags:
   - library
 contributors:
@@ -14,6 +13,9 @@ hyde:
   tags:
     - library
 layout: library
+menu:
+  main:
+    weight: 20
 title: Sample API
 ---
 
