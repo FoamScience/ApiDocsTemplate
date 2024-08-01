@@ -1,3 +1,7 @@
+> [!WARNING]
+> This repository was deprecated in favor of:
+> [OpenFOAMDocsWebpages](https://github.com/FoamScience/OpenFOAMDocsWebpages)
+
 # Template for OpenFOAM API docs using Hugo/Docsy and Hyde
 
 This is a simple Hugo template for generating a static website using
